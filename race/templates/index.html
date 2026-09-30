@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RACE — a shared space for your data, sheets, and ideas.">
+  <title>RACE · Your data, together</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/vendor/tabulator.min.css">
+  <link rel="stylesheet" href="/static/app.css">
+  <script defer src="/static/vendor/tabulator.min.js"></script>
+  <script defer src="/static/vendor/plotly.min.js"></script>
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="RACE home"><span class="brand-mark">r.</span><span>RACE<span class="brand-caption">DATA WORKSPACE</span></span></a>
+    <button class="workspace-switch" id="home-button"><span class="workspace-avatar">W</span><span>Your workspace<small>A little structure. More possibilities.</small></span></button>
+    <div class="sidebar-actions"><button class="primary" id="new-workbook">＋ New workbook</button><button class="icon-button" id="new-folder" title="New folder" aria-label="New folder">▱＋</button></div>
+    <div class="tree-scroll"><div class="section-label">MY WORKSPACE</div><nav id="my-tree" aria-label="My workspace"><p class="muted">Loading workspace…</p></nav>
+    <div class="section-label shared-label">SHARED WITH ME <span id="shared-count">0</span></div><nav id="shared-tree" aria-label="Shared with me"></nav></div>
+    <div class="sidebar-note"><span class="small-spark">✳</span><div>One source. New perspectives.<p>Explore shared data in your own way.</p></div></div>
+    <div class="profile"><span class="avatar" id="avatar">A</span><div id="profile-name">Your workspace</div></div>
+  </aside>
+  <main>
+    <header class="topbar"><div id="breadcrumbs">Workspace <span>/</span> Overview</div><div class="topbar-right"><span class="environment"><i></i>Databricks connected</span></div></header>
+    <div id="notice" class="notice" role="alert" hidden></div>
+    <section id="home" class="home" hidden>
+      <div class="eyebrow">MAKE ROOM FOR DISCOVERY</div><h1>Your data. A fresh perspective.</h1><p class="home-intro">Bring your sheets, charts, and team into one shared workspace.</p>
+      <div class="home-banner"><div><span class="eyebrow">BUILT FOR THE WAY YOU THINK</span><h2>Start with a sheet.<br>See the bigger picture.</h2><p>Familiar tools. Live data. Ideas worth sharing.</p><button class="primary" id="home-new">Create a workbook <span>↗</span></button></div><div class="banner-art" aria-hidden="true"><div class="mini-sheet"><div class="mini-sheet-heading">Your next insight</div><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="mini-grid"></div></div><span class="art-star">✳</span></div></div>
+      <div class="home-section-title"><h2>Your workbooks</h2><span id="book-count" class="muted"></span></div><div id="workbook-cards" class="workbook-cards"></div>
+    </section>
+    <section id="workbook" class="workbook" hidden>
+      <div class="book-heading"><div class="book-title-group"><div class="book-icon">▦</div><div><div class="title-line"><h1 id="book-title"></h1><span class="role-pill" id="role-pill"></span></div><p id="book-subtitle"></p></div></div><div class="book-actions"><button id="book-menu" class="icon-button" title="Workbook actions" aria-label="Workbook actions">•••</button><button id="clone-button" class="secondary">⧉ Clone</button><button id="share-button" class="primary">↗ Share</button></div></div>
+      <div class="workbook-body"><div class="tabbar"><div id="tabs" role="tablist" aria-label="Workbook sheets and charts"></div><div class="add-tabs"><button id="add-sheet" title="Add a sheet">＋ Sheet</button><button id="add-chart" title="Add a chart">＋ Chart</button></div></div>
+        <div class="sheet-toolbar"><div class="toolbar-group"><span class="source-indicator"><i></i><span id="source-label">Connected data</span></span><span class="divider"></span><button id="filter-button">☷ Filters <span id="filter-count"></span></button><button id="columns-button">▥ Columns</button><button id="calculation-button"><em>ƒx</em> Calculate</button></div><div class="toolbar-group"><span id="save-status" class="save-status" aria-live="polite">All changes saved</span><button id="refresh-button" title="Refresh data" aria-label="Refresh data">↻</button><button id="tab-menu" title="Sheet or chart actions" aria-label="Sheet or chart actions">•••</button></div></div>
+        <div id="filter-chips" class="filter-chips" hidden></div>
+        <div id="content-error" class="content-error" role="alert" hidden></div>
+        <div id="sheet-view"><div class="formula-bar"><span id="cell-address">A1</span><em>ƒx</em><span id="cell-value">Select a cell to explore your data</span><span class="read-only-label">SOURCE DATA · READ ONLY</span></div><div id="grid" aria-label="Spreadsheet"></div></div>
+        <div id="chart-view" hidden><div class="chart-heading"><div><span class="eyebrow">THE BIGGER PICTURE</span><h2 id="chart-title"></h2><p id="chart-description"></p></div><button id="edit-chart" class="secondary">Edit chart</button></div><div id="plot"></div><p class="chart-footnote">Aggregated across all matching rows. Sheet and chart filters both apply.</p></div>
+        <div id="empty-workbook" class="empty" hidden><div class="empty-icon">▦</div><h2>A blank canvas for your next insight</h2><p>Add a sheet to start exploring a shared dataset.</p><button id="empty-add" class="primary">＋ Create your first sheet</button></div>
+        <footer class="statusbar"><div><span class="status-dot"></span><span id="row-status">Ready</span></div><span id="selection-status">Tip: select a range and press ⌘C / Ctrl+C to copy</span><span id="column-status"></span></footer>
+      </div>
+    </section>
+  </main>
+  <dialog id="dialog"><form id="dialog-form"><div class="dialog-header"><div><span class="eyebrow" id="dialog-eyebrow">YOUR WORKSPACE</span><h2 id="dialog-title"></h2></div><button type="button" class="icon-button" id="dialog-close" aria-label="Close dialog">×</button></div><div id="dialog-body"></div><p id="dialog-error" class="form-error" role="alert" hidden></p><div class="dialog-footer"><button type="button" class="secondary" id="dialog-cancel">Cancel</button><button type="submit" class="primary" id="dialog-submit">Save</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

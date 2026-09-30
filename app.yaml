@@ -1,0 +1,16 @@
+command: ["python", "app.py"]
+env:
+  - name: RACE_MODE
+    value: "databricks"
+  - name: RACE_METADATA_CATALOG
+    value: "sandbox"
+  - name: RACE_METADATA_SCHEMA
+    value: "race"
+  - name: RACE_QUERY_TIMEOUT_SECONDS
+    value: "30"
+  - name: RACE_MAX_PAGE_SIZE
+    value: "500"
+  - name: RACE_MAX_CHART_POINTS
+    value: "1000"
+  - name: DATABRICKS_WAREHOUSE_ID
+    value: "bb82cac9ab2b18b8"

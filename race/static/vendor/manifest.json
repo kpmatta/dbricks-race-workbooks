@@ -1,0 +1,22 @@
+{
+  "tabulator.min.js": {
+    "url": "https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.0/dist/js/tabulator.min.js",
+    "sha256": "6625895a7769ed2c4a445263ed760a8ca153d448e58509e47999299682cdbad1"
+  },
+  "tabulator.min.css": {
+    "url": "https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.0/dist/css/tabulator.min.css",
+    "sha256": "a46d8051944c745cae8a7976b4fb9d93d894d20876a4521cc4f6f035cfef52ea"
+  },
+  "TABULATOR-LICENSE": {
+    "url": "https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.0/LICENSE",
+    "sha256": "6896ea2563141abf7c5c466508d654885bda0b540a780f38564cb8d60eed6f76"
+  },
+  "plotly.min.js": {
+    "url": "https://cdn.jsdelivr.net/npm/plotly.js-dist-min@3.1.0/plotly.min.js",
+    "sha256": "122e3be346d66616944d0b83eaaf7242581508c3c1cfa0995a17af0d83eff770"
+  },
+  "PLOTLY-LICENSE": {
+    "url": "https://cdn.jsdelivr.net/npm/plotly.js-dist-min@3.1.0/LICENSE",
+    "sha256": "8c45d9eaf50c2f72dd9c7ab9ef440788ba58a3538484b5c51c1f17d5128752e7"
+  }
+}
